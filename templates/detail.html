@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+<{% block body %}
+detaildir
+{{article.author.username}}
+<hr>
+{{article.title}}
+<hr>
+{{article.created_date}}
+<hr>
+{{article.content|safe}}
+<hr>
+{% for comment in comments %}
+<hr><hr>
+{{comment.comment_author}}
+<hr>
+{{comment.comment_content}}
+<hr>
+{{comment.comment_date}}
+<hr><hr>
+{% endfor %}
+{% if article.article_image %}
+<img class src="{{article.article_image.url}}" width="500px" height="600px">
+{% endif %}
+<form method = "post" action="{% url 'article:comment' article.id  %}">
+ {% csrf_token %}
+ <input name="comment_author">
+ <textarea name="comment_content"></textarea>
+ <button type ="submit">yorum ekle</button>
+ </form>
+{% endblock body %} 

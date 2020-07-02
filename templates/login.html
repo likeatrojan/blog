@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h3> giriş yap</h3>
+<form method = "post">
+ {% csrf_token %}
+ {{form.as_p}}
+ <button type ="submit">giriş yap</button>
+ </form>
+{% endblock body %}

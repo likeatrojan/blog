@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block body %}
+dashboarddır
+{% if request.user.is_authenticated %}
+Hoşgeldin panele {{request.user.username}}
+{% with articles|first as article %}
+{{article.author.username}}in yazıları
+{% endwith %}
+<a href="/articles/addarticle">makale ekle</a>
+{% endif %}
+<ul>
+{% for article in articles %}
+<li>{{article.id}}</li>
+<li>{{article.author.username}}</li>
+<li><a href="/articles/article/{{article.id}}">{{article.title}}</a></li>
+<li>{{article.created_date}}</li>
+<li><a href="/articles/update/{{article.id}}">Güncelle</a></li>
+<li><a href="/articles/delete/{{article.id}}">Sil</a></li>
+<hr>
+{% endfor %}
+</ul>
+<a href="/">anasayfa</a>
+{% endblock body %}

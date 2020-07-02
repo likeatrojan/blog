@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block body %}
+makaleler
+<form>
+ {% csrf_token %}
+<input type="text" name="keyword">
+<button type="submit">ara</button>  
+</form>
+<ul>
+{% for article in articles %}
+<li>{{article.id}}</li>
+<li>{{article.author.username}}</li>
+<li><a href="{% url 'article:detail' article.id %}">{{article.title}}</a></li>
+<li>{{article.created_date}}</li>
+<hr>
+{% endfor %}
+</ul>
+{% if articles %}
+{% else %}
+Makale Bulunamadı
+{% endif %}
+<a href="/">anasayfa</a>
+{% endblock body %}
