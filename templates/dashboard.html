@@ -7,7 +7,7 @@ Hoşgeldin panele {{request.user.username}}
 {% with articles|first as article %}
 {{article.author.username}}in yazıları
 {% endwith %}
-<a href="/articles/addarticle">makale ekle</a>
+<a href="/articles/addarticle">makale ekleme</a>
 {% endif %}
 <ul>
 {% for article in articles %}
